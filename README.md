@@ -18,7 +18,7 @@
 1. [HTML问题](./HTML问题)
 2. CSS问题
 3. javaScript问题
-4. HTTP问题
+4. 网络问题
 5. 计算机底层问题
 6. nodeJs问题
 8. 框架问题集合
