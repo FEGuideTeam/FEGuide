@@ -25,11 +25,12 @@
 
 ### 进行中
 
-- [CSS 问题](./CSS问题/css.md)
+-   [javaScript 问题](./javascript问题/javascript.md)
 
 ### 已完成
 
-1. [HTML 问题](./HTML问题/html.md)
+1. [x] HTML 问题
+2. [x] CSS 问题
 
 ### 贡献指南
 
