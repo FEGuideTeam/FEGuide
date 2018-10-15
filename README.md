@@ -16,7 +16,7 @@
 
 1. [HTML 问题](./HTML问题/html.md)
 2. [CSS 问题](./CSS问题/css.md)
-3. javaScript 问题
+3. [javaScript 问题](./javascript问题/javascript.md)
 4. 网络问题
 5. 计算机底层问题
 6. nodeJs 问题
@@ -25,7 +25,7 @@
 
 ### 进行中
 
--   [javaScript 问题](./javascript问题/javascript.md)
+- [javaScript 问题](./javascript问题/javascript.md)
 
 ### 已完成
 
@@ -38,4 +38,4 @@
 
 ## 许可协议
 
-本项目全部内容遵守 [MIT 许可协议](../../LICENSE).
+本项目全部内容遵守 [MIT 许可协议](./LICENSE).
