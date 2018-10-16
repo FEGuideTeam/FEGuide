@@ -802,3 +802,209 @@ var test1 = createObject('trigkit4',22,'programmer');//第一个实例var test2 
 我们举例说明：比如一个黑客程序，他利用 Iframe 把真正的银行登录页面嵌到他的页面上，当你使用真实的用户名，密码登录时，他的页面就可以通过 Javascript 读取到你的表单中 input 中的内容，这样用户名，密码就轻松到手了。]
 
 缺点: 现在网站的 JS 都会进行压缩，一些文件用了严格模式，而另一些没有。这时这些本来是严格模式的文件，被 merge 后，这个串就到了文件的中间，不仅没有指示严格模式，反而在压缩后浪费了字节
+
+### 实现一个函数 clone，可以对 JavaScript 中的 5 种主要的数据类型（包括 Number、String、Object、Array、Boolean）进行值复制（常考）
+
+```
+function deepClone(obj) {
+    if (!isObject(obj)) {
+        throw new Error('obj 不是一个对象！')
+    }
+
+    let isArray = Array.isArray(obj)
+    let cloneObj = isArray ? [] : {}
+    for (let key in obj) {
+        cloneObj[key] = isObject(obj[key]) ? deepClone(obj[key]) : obj[key]
+    }
+
+    return cloneObj
+}
+```
+
+注意：for...in 法不支持拷贝 func、date、reg 和 err
+
+```
+// 代理法
+function deepClone(obj) {
+    if (!isObject(obj)) {
+        throw new Error('obj 不是一个对象！')
+    }
+
+    let isArray = Array.isArray(obj)
+    let cloneObj = isArray ? [...obj] : { ...obj }
+    Reflect.ownKeys(cloneObj).forEach(key => {
+        cloneObj[key] = isObject(obj[key]) ? deepClone(obj[key]) : obj[key]
+    })
+
+    return cloneObj
+}
+```
+
+### 说说严格模式的限制
+
+-   严格模式主要有以下限制：
+-   变量必须声明后再使用
+-   函数的参数不能有同名属性，否则报错
+-   不能使用 with 语句
+-   不能对只读属性赋值，否则报错
+-   不能使用前缀 0 表示八进制数，否则报错
+-   不能删除不可删除的属性，否则报错
+-   不能删除变量 delete prop，会报错，只能删除属性 delete global[prop]
+-   eval 不会在它的外层作用域引入变量
+-   eval 和 arguments 不能被重新赋值
+-   arguments 不会自动反映函数参数的变化
+-   不能使用 arguments.callee
+-   不能使用 arguments.caller
+-   禁止 this 指向全局对象
+-   不能使用 fn.caller 和 fn.arguments 获取函数调用的堆栈
+-   增加了保留字（比如 protected、static 和 interface）
+
+### 如何删除一个 cookie
+
+将时间设为当前时间往前一点
+
+```
+var date = new Date();
+date.setDate(date.getDate() - 1);//真正的删除
+```
+
+setDate()方法用于设置一个月的某一天
+
+expires 的设置
+
+```
+  document.cookie = 'user='+ encodeURIComponent('name')  + ';expires = ' + new Date(0)
+```
+
+### 编写一个方法 求一个字符串的字节长度
+
+假设：一个英文字符占用一个字节，一个中文字符占用两个字节
+
+```
+function GetBytes(str){
+
+        var len = str.length;
+
+        var bytes = len;
+
+        for(var i=0; i<len; i++){
+
+            if (str.charCodeAt(i) > 255) bytes++;
+
+        }
+
+        return bytes;
+
+    }
+
+alert(GetBytes("你好,as"));
+```
+
+### 请解释什么是事件代理
+
+事件代理（Event Delegation），又称之为事件委托。是 JavaScript 中常用绑定事件的常用技巧。顾名思义，“事件代理”即是把原本需要绑定的事件委托给父元素，让父元素担当事件监听的职务。事件代理的原理是 DOM 元素的事件冒泡。使用事件代理的好处是可以提高性能
+
+### attribute 和 property 的区别是什么？
+
+-   attribute 是 dom 元素在文档中作为 html 标签拥有的属性；
+-   property 就是 dom 元素在 js 中作为对象拥有的属性。
+-   对于 html 的标准属性来说，attribute 和 property 是同步的，是会自动更新的
+-   但是对于自定义的属性来说，他们是不同步的
+
+### 页面编码和被请求的资源编码如果不一致如何处理？
+
+-   后端响应头设置 charset
+-   前端页面`<meta>`设置 charset
+
+### 把 `<script>` 放在 `</body>` 之前和之后有什么区别？浏览器会如何解析它们？
+
+按照 HTML 标准，在</body>结束后出现`<script>`或任何元素的开始标签，都是解析错误
+虽然不符合 HTML 标准，但浏览器会自动容错，使实际效果与写在`</body>`之前没有区别
+浏览器的容错机制会忽略`<script>`之前的</body>，视作`<script>`仍在 body 体内。省略`</body>`和`</html>`闭合标签符合 HTML 标准，服务器可以利用这一标准
+
+### 异步加载 JS 的方式有哪些？
+
+-   设置`<script>`属性 async="async" （一旦脚本可用，则会异步执行）
+-   动态创建 script DOM：document.createElement('script');
+-   XmlHttpRequest 脚本注入
+-   异步加载库 LABjs
+-   模块加载器 Sea.js
+
+### JavaScript 中，调用函数有哪几种方式？
+
+-   方法调用模式 Foo.foo(arg1, arg2);
+-   函数调用模式 foo(arg1, arg2);
+-   构造器调用模式 (new Foo())(arg1, arg2);
+-   call/applay 调用模式 Foo.foo.call(that, arg1, arg2);
+-   bind 调用模式 Foo.foo.bind(that)(arg1, arg2)();
+
+### 简单实现 Function.bind 函数？
+
+```
+  if (!Function.prototype.bind) {
+    Function.prototype.bind = function(that) {
+      var func = this, args = arguments;
+      return function() {
+        return func.apply(that, Array.prototype.slice.call(args, 1));
+      }
+    }
+  }
+  // 只支持 bind 阶段的默认参数：
+  func.bind(that, arg1, arg2)();
+
+  // 不支持以下调用阶段传入的参数：
+  func.bind(that)(arg1, arg2);
+```
+
+### 列举一下 JavaScript 数组和对象有哪些原生方法
+
+-   数组：
+    -   arr.concat(arr1, arr2, arrn);
+    -   arr.join(",");
+    -   arr.sort(func);
+    -   arr.pop();
+    -   arr.push(e1, e2, en);
+    -   arr.shift();
+    -   unshift(e1, e2, en);
+    -   arr.reverse();
+    -   arr.slice(start, end);
+    -   arr.splice(index, count, e1, e2, en);
+    -   arr.indexOf(el);
+    -   arr.includes(el); // ES6
+-   对象：
+    -   object.hasOwnProperty(prop);
+    -   object.propertyIsEnumerable(prop);
+    -   object.valueOf();
+    -   object.toString();
+    -   object.toLocaleString();
+    -   Class.prototype.isPropertyOf(object);
+
+### Array.splice() 与 Array.splice() 的区别？
+
+-   slice -- “读取”数组指定的元素，不会对原数组进行修改
+
+    -   语法：arr.slice(start, end)
+    -   start 指定选取开始位置（含）
+    -   end 指定选取结束位置（不含）
+
+-   splice
+    -   “操作”数组指定的元素，会修改原数组，返回被删除的元素
+    -   语法：arr.splice(index, count, [insert Elements])
+    -   index 是操作的起始位置
+    -   count = 0 插入元素，count > 0 删除元素
+    -   [insert Elements] 向数组新插入的元素
+
+### JavaScript 对象生命周期的理解？
+
+-   当创建一个对象时，JavaScript 会自动为该对象分配适当的内存
+-   垃圾回收器定期扫描对象，并计算引用了该对象的其他对象的数量
+-   如果被引用数量为 0，或惟一引用是循环的，那么该对象的内存即可回收
+
+### 哪些操作会造成内存泄漏？
+
+-   JavaScript 内存泄露指对象在不需要使用它时仍然存在，导致占用的内存不能使用或回收
+-   未使用 var 声明的全局变量
+-   闭包函数(Closures)
+-   循环引用(两个对象相互引用)
+-   控制台日志(console.log)
+-   移除存在绑定事件的 DOM 元素(IE)
