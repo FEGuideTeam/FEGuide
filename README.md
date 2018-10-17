@@ -1,8 +1,8 @@
-# FEGuide 前端指南
+## FEGuide 前端指南
 
 ![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)
 
-## 介绍
+### 介绍
 
 相对于传统的软件工程师(Java C/C++)面试而言，前端工程师面试对算法以及计算机底层考察程度较低。面试的时候一般会着重考察错综复杂的前端基础知识，比如 HTML ，CSS ，JS 等。同时会根据各个面试公司的技术栈去侧重一些应用上的技术，比如小程序，node，react，vue 等等。
 
@@ -36,6 +36,12 @@
 
 请阅读我们的[贡献指南](./CONTRIBUTING.md)，了解可以如何贡献，如何提出改进建议。
 
-## 许可协议
+### 许可协议
 
 本项目全部内容遵守 [MIT 许可协议](./LICENSE).
+
+### 其他
+
+关注我们同名的微信公众号，每天早上六点准时推送前端资讯，一起来学习把。
+
+![前端指南](assets/imgs/feguide.jpg)
