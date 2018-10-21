@@ -14,9 +14,9 @@
 
 ### 目录
 
-1. [HTML 问题](./HTML问题/html.md)
-2. [CSS 问题](./CSS问题/css.md)
-3. [javaScript 问题](./javascript问题/javascript.md)
+1. [HTML 问题](./html.md)
+2. [CSS 问题](./css.md)
+3. [javaScript 问题](./javascript.md)
 4. 网络问题
 5. 计算机底层问题
 6. nodeJs 问题
@@ -45,4 +45,4 @@
 
 关注我们同名的微信公众号，每天早上六点准时推送前端资讯，一起来学习把。
 
-![前端指南](assets/imgs/feguide.jpg)
+![前端指南](./imgs/feguide.jpg)
