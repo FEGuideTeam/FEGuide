@@ -210,3 +210,21 @@ Semantic Style Elements -- 语义样式标签
 strong, em, ins, del, code
 
 应该准确使用语义样式标签, 但不能滥用, 如果不能确定时首选使用自然样式标签。
+
+### html中title属性和alt属性的区别？
+```
+<img src="#" alt="alt信息" />
+```
+当图片不输出信息的时候，会显示alt信息 鼠标放上去没有信息，当图片正常读取，不会出现alt信息。
+```
+<img src="#" alt="alt信息" title="title信息" />
+```
+当图片不输出信息的时候，会显示alt信息 鼠标放上去会出现title信息；
+当图片正常输出的时候，不会出现alt信息，鼠标放上去会出现title信息。
+
+###### 另外还有一些关于title属性的知识：
+- title属性可以用在除了base，basefont，head，html，meta，param，script和title之外的所有标签。
+- title属性的功能是提示。额外的说明信息和非本质的信息请使用title属性。title属性值可以比alt属性值设置的更长。
+- title属性有一个很好的用途，即为链接添加描述性文字，特别是当连接本身并不是十分清楚的表达了链接的目的。
+
+
