@@ -763,7 +763,9 @@ ajax 的全称：Asynchronous Javascript And XML
 -   工厂模式解决了重复实例化的问题 ，但还有一个问题,那就是识别问题，因为根本无法 搞清楚他们到底是哪个对象的实例
 
 ```
-function createObject(name,age,profession){//集中实例化的函数var obj = new Object();
+function createObject(name,age,profession){
+    //集中实例化的函数
+    var obj = new Object();
     obj.name = name;
     obj.age = age;
     obj.profession = profession;
