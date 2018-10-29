@@ -981,7 +981,7 @@ alert(GetBytes("你好,as"));
     -   object.toLocaleString();
     -   Class.prototype.isPropertyOf(object);
 
-### Array.splice() 与 Array.splice() 的区别？
+### Array.slice() 与 Array.splice() 的区别？
 
 -   slice -- “读取”数组指定的元素，不会对原数组进行修改
 
