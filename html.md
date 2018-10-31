@@ -226,7 +226,7 @@ strong, em, ins, del, code
 当图片不输出信息的时候，会显示 alt 信息 鼠标放上去会出现 title 信息；
 当图片正常输出的时候，不会出现 alt 信息，鼠标放上去会出现 title 信息。
 
-###### 另外还有一些关于 title 属性的知识：
+### 另外还有一些关于 title 属性的知识：
 
 - title 属性可以用在除了 base，basefont，head，html，meta，param，script 和 title 之外的所有标签。
 - title 属性的功能是提示。额外的说明信息和非本质的信息请使用 title 属性。title 属性值可以比 alt 属性值设置的更长。
