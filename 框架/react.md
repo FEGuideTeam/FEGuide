@@ -43,7 +43,7 @@ shouldComponentUpdate 这个方法用来判断是否需要调用 render 方法�
 
 参考[react 性能优化-sf](https//segmentfault.com/a/1190000006254212)
 
-### 为什么虚拟 dom 会提高性能?
+### 为什么虚拟 dom 会提高性能?(必考)
 
 虚拟 dom 相当于在 js 和真实 dom 中间加了一个缓存，利用 dom diff 算法避免了没有必要的 dom 操作，从而提高性能。
 
@@ -51,7 +51,7 @@ shouldComponentUpdate 这个方法用来判断是否需要调用 render 方法�
 
 参考 [如何理解虚拟 DOM?-zhihu](https://www.zhihu.com/question/29504639?sort=created)
 
-### react diff 原理
+### react diff 原理（常考，大厂必考）
 
 - 把树形结构按照层级分解，只比较同级元素。
 - 给列表结构的每个单元添加唯一的 key 属性，方便比较。
@@ -150,3 +150,42 @@ class Twitter extends Component {
     : <Profile info={user} />}
 </Twitter>
 ```
+
+### 展示组件(Presentational component)和容器组件(Container component)之间有何不同
+
+- 展示组件关心组件看起来是什么。展示专门通过 props 接受数据和回调，并且几乎不会有自身的状态，但当展示组件拥有自身的状态时，通常也只关心 UI 状态而不是数据的状态。
+- 容器组件则更关心组件是如何运作的。容器组件会为展示组件或者其它容器组件提供数据和行为(behavior)，它们会调用 Flux actions，并将其作为回调提供给展示组件。容器组件经常是有状态的，因为它们是(其它组件的)数据源。
+
+### 类组件(Class component)和函数式组件(Functional component)之间有何不同
+
+- 类组件不仅允许你使用更多额外的功能，如组件自身的状态和生命周期钩子，也能使组件直接访问 store 并维持状态
+- 当组件仅是接收 props，并将组件自身渲染到页面时，该组件就是一个 '无状态组件(stateless component)'，可以使用一个纯函数来创建这样的组件。这种组件也被称为哑组件(dumb components)或展示组件
+
+### (组件的)状态(state)和属性(props)之间有何不同
+
+- State 是一种数据结构，用于组件挂载时所需数据的默认值。State 可能会随着时间的推移而发生突变，但多数时候是作为用户事件行为的结果。
+- Props(properties 的简写)则是组件的配置。props 由父组件传递给子组件，并且就子组件而言，props 是不可变的(immutable)。组件不能改变自身的 props，但是可以把其子组件的 props 放在一起(统一管理)。Props 也不仅仅是数据--回调函数也可以通过 props 传递。
+
+### 何为受控组件(controlled component)
+
+在 HTML 中，类似 `<input>`, `<textarea>` 和 `<select>` 这样的表单元素会维护自身的状态，并基于用户的输入来更新。当用户提交表单时，前面提到的元素的值将随表单一起被发送。但在 React 中会有些不同，包含表单元素的组件将会在 state 中追踪输入的值，并且每次调用回调函数时，如 onChange 会更新 state，重新渲染组件。一个输入表单元素，它的值通过 React 的这种方式来控制，这样的元素就被称为"受控元素"。
+
+### 何为高阶组件(higher order component)
+
+高阶组件是一个以组件为参数并返回一个新组件的函数。HOC 运行你重用代码、逻辑和引导抽象。最常见的可能是 Redux 的 connect 函数。除了简单分享工具库和简单的组合，HOC 最好的方式是共享 React 组件之间的行为。如果你发现你在不同的地方写了大量代码来做同一件事时，就应该考虑将代码重构为可重用的 HOC。
+
+### 为什么建议传递给 setState 的参数是一个 callback 而不是一个对象
+
+因为 this.props 和 this.state 的更新可能是异步的，不能依赖它们的值去计算下一个 state。
+
+### 除了在构造函数中绑定 this，还有其它方式吗
+
+你可以使用属性初始值设定项(property initializers)来正确绑定回调，create-react-app 也是默认支持的。在回调中你可以使用箭头函数，但问题是每次组件渲染时都会创建一个新的回调。
+
+### (在构造函数中)调用 super(props) 的目的是什么
+
+在 super() 被调用之前，子类是不能使用 this 的，在 ES2015 中，子类必须在 constructor 中调用 super()。传递 props 给 super() 的原因则是便于(在子类中)能在 constructor 访问 this.props。
+
+### 应该在 React 组件的何处发起 Ajax 请求
+
+在 React 组件中，应该在 componentDidMount 中发起网络请求。这个方法会在组件第一次“挂载”(被添加到 DOM)时执行，在组件的生命周期中仅会执行一次。更重要的是，你不能保证在组件挂载之前 Ajax 请求已经完成，如果是这样，也就意味着你将尝试在一个未挂载的组件上调用 setState，这将不起作用。在 componentDidMount 中发起网络请求将保证这有一个组件可以更新了。
