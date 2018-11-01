@@ -189,3 +189,65 @@ class Twitter extends Component {
 ### 应该在 React 组件的何处发起 Ajax 请求
 
 在 React 组件中，应该在 componentDidMount 中发起网络请求。这个方法会在组件第一次“挂载”(被添加到 DOM)时执行，在组件的生命周期中仅会执行一次。更重要的是，你不能保证在组件挂载之前 Ajax 请求已经完成，如果是这样，也就意味着你将尝试在一个未挂载的组件上调用 setState，这将不起作用。在 componentDidMount 中发起网络请求将保证这有一个组件可以更新了。
+
+### 描述事件在 React 中的处理方式。
+
+为了解决跨浏览器兼容性问题，您的 React 中的事件处理程序将传递 SyntheticEvent 的实例，它是 React 的浏览器本机事件的跨浏览器包装器。
+
+这些 SyntheticEvent 与您习惯的原生事件具有相同的接口，除了它们在所有浏览器中都兼容。有趣的是，React 实际上并没有将事件附加到子节点本身。React 将使用单个事件监听器监听顶层的所有事件。这对于性能是有好处的，这也意味着在更新 DOM 时，React 不需要担心跟踪事件监听器。
+
+### createElement 和 cloneElement 有什么区别？
+
+React.createElement():JSX 语法就是用 React.createElement()来构建 React 元素的。它接受三个参数，第一个参数可以是一个标签名。如 div、span，或者 React 组件。第二个参数为传入的属性。第三个以及之后的参数，皆作为组件的子组件。
+
+```
+React.createElement(
+    type,
+    [props],
+    [...children]
+)
+```
+
+React.cloneElement()与 React.createElement()相似，不同的是它传入的第一个参数是一个 React 元素，而不是标签名或组件。新添加的属性会并入原有的属性，传入到返回的新元素中，而就的子元素奖杯替换。
+
+```
+React.cloneElement(
+  element,
+  [props],
+  [...children]
+)
+```
+
+### React 中有三种构建组件的方式
+
+React.createClass()、ES6 class 和无状态函数。
+
+### react 组件的划分业务组件技术组件？
+
+- 根据组件的职责通常把组件分为 UI 组件和容器组件。
+- UI 组件负责 UI 的呈现，容器组件负责管理数据和逻辑。
+- 两者通过 React-Redux 提供 connect 方法联系起来。
+
+### 简述 flux 思想
+
+Flux 的最大特点，就是数据的"单向流动"。
+
+1. 用户访问 View
+2. View 发出用户的 Action
+3. Dispatcher 收到 Action，要求 Store 进行相应的更新
+4. Store 更新后，发出一个"change"事件
+5. View 收到"change"事件后，更新页面
+
+### React 项目用过什么脚手架（本题是开放性题目）
+
+creat-react-app Yeoman 等
+
+### 了解 redux 么，说一下 redux 把
+
+- redux 是一个应用数据流框架，主要是解决了组件间状态共享的问题，原理是集中式管理，主要有三个核心方法，action，store，reducer，工作流程是 view 调用 store 的 dispatch 接收 action 传入 store，reducer 进行 state 操作，view 通过 store 提供的 getState 获取最新的数据，flux 也是用来进行数据操作的，有四个组成部分 action，dispatch，view，store，工作流程是 view 发出一个 action，派发器接收 action，让 store 进行数据更新，更新完成以后 store 发出 change，view 接受 change 更新视图。Redux 和 Flux 很像。主要区别在于 Flux 有多个可以改变应用状态的 store，在 Flux 中 dispatcher 被用来传递数据到注册的回调事件，但是在 redux 中只能定义一个可更新状态的 store，redux 把 store 和 Dispatcher 合并,结构更加简单清晰
+- 新增 state,对状态的管理更加明确，通过 redux，流程更加规范了，减少手动编码量，提高了编码效率，同时缺点时当数据更新时有时候组件不需要，但是也要重新绘制，有些影响效率。一般情况下，我们在构建多交互，多数据流的复杂项目应用时才会使用它们
+
+### redux 有什么缺点
+
+- 一个组件所需要的数据，必须由父组件传过来，而不能像 flux 中直接从 store 取。
+- 当一个组件相关数据更新时，即使父组件不需要用到这个组件，父组件还是会重新 render，可能会有效率影响，或者需要写复杂的 shouldComponentUpdate 进行判断。
