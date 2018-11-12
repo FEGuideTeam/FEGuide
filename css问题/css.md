@@ -15,7 +15,7 @@
 
 IE 条件注释：适用于[IE5, IE9]常见格式如下
 
-```
+```html
 <!--[if IE 6]>
 Special instructions for IE 6 here
 <![endif]-->
@@ -23,7 +23,7 @@ Special instructions for IE 6 here
 
 选择器 hack：不同浏览器对选择器的支持不一样
 
-```
+```css
 /***** Selector Hacks ******/
 
 /* IE6 and below */
@@ -81,7 +81,7 @@ html[xmlns*=""]:root #trece  { color: red  }
 
 属性 hack：不同浏览器解析 bug 或方法
 
-```
+```css
 /* IE6 */
 #once { _color: blue }
 
@@ -191,7 +191,7 @@ html[xmlns*=""]:root #trece  { color: red  }
 
 如果需要居中的元素为常规流中 block 元素，1）为元素设置宽度，2）设置左右 margin 为 auto。3）IE6 下需在父元素上设置 text-align: center;,再给子元素恢复需要的值
 
-```
+```html
 <body>
     <div class="content">
     aaaaaa aaaaaa a a a a a a a a
@@ -215,7 +215,7 @@ html[xmlns*=""]:root #trece  { color: red  }
 
 如果需要居中的元素为浮动元素，1）为元素设置宽度，2）position: relative;，3）浮动方向偏移量（left 或者 right）设置为 50%，4）浮动方向上的 margin 设置为元素宽度一半乘以-1
 
-```
+```html
 <body>
     <div class="content">
     aaaaaa aaaaaa a a a a a a a a
@@ -241,7 +241,7 @@ html[xmlns*=""]:root #trece  { color: red  }
 
 如果需要居中的元素为绝对定位元素，1）为元素设置宽度，2）偏移量设置为 50%，3）偏移方向外边距设置为元素宽度一半乘以-1
 
-```
+```html
 <body>
     <div class="content">
     aaaaaa aaaaaa a a a a a a a a
@@ -267,7 +267,7 @@ html[xmlns*=""]:root #trece  { color: red  }
 
 如果需要居中的元素为绝对定位元素，1）为元素设置宽度，2）设置左右偏移量都为 0,3）设置左右外边距都为 auto
 
-```
+```html
 <body>
     <div class="content">
     aaaaaa aaaaaa a a a a a a a a
@@ -343,8 +343,8 @@ html[xmlns*=""]:root #trece  { color: red  }
 
 ### 用纯 CSS 创建一个三角形的原理是什么？
 
-```
-// 把上、左、右三条边隐藏掉（颜色设为 transparent）
+```css
+/* 把上、左、右三条边隐藏掉（颜色设为 transparent）*/
 #demo {
   width: 0;
   height: 0;
@@ -393,7 +393,7 @@ html[xmlns*=""]:root #trece  { color: red  }
 1. 如果一个声明来自style属性而不是选择器，计作1或者a=1（在一个html文档中，元素“style”的值是样式表规则，这个规则中没有选择器，所以a=1, b=0, c=0, and d=0）
 2. 选择器中id属性的个数,计作b
 3. 选择器中其他属性以及伪类的个数，计作c
-4. 选择器中元素及伪元素的个数，计作d   
+4. 选择器中元素及伪元素的个数，计作d
 
 一些例子：
 ``` css
@@ -408,7 +408,7 @@ li.red.level {}     /* a=0 b=0 c=2 d=1 -> 优先级 = 0,0,2,1 */
 #x34y {}     /* a=0 b=1 c=0 d=0 -> 优先级 = 0,1,0,0 */
 style=""     /* a=1 b=0 c=0 d=0 -> 优先级 = 1,0,0,0 */
 
-[备注] 
+[备注]
 　　:first-line 伪元素
 　　[rel=up] 其他属性
 ```
@@ -418,7 +418,7 @@ style=""     /* a=1 b=0 c=0 d=0 -> 优先级 = 1,0,0,0 */
 
 当然权重最高的是!important，会覆盖以上所有。行内样式也高不过它。
 
-有一幅生动的图可以展示这个规则：   
+有一幅生动的图可以展示这个规则：
 ![大鱼吃小鱼](http://image.zhangxinxu.com/image/blog/201208/specifishity1-1.png)
 
 
@@ -436,7 +436,7 @@ style=""     /* a=1 b=0 c=0 d=0 -> 优先级 = 1,0,0,0 */
 
 1. 父级 div 定义伪类：after 和 zoom (推荐使用，建议定义公共类，以减少 CSS 代码)
 
-```
+```css
    .clearfloat:after{
        display:block;
        clear:both;
@@ -449,15 +449,17 @@ style=""     /* a=1 b=0 c=0 d=0 -> 优先级 = 1,0,0,0 */
 
 2. 在结尾处添加空 div 标签 clear:both
 
-```
+```html
 <div class="parent">
     <div class="left">Left</div>
     <div class="right">Right</div>
     <div class="clearfloat"></div>
 </div>
 
-.left {float:left}
-.clearfloat{clear:both}
+<style>
+    .left {float:left}
+    .clearfloat{clear:both}
+</style>
 ```
 
 3. 父级 div 定义 height
@@ -513,7 +515,7 @@ Flexbox 用于不同尺寸屏幕中创建可自动扩展和收缩布局
 
 原理：利用相对定位、浮动、负边距布局，而不添加额外标签
 
-```
+```css
   .container {
       padding-left: 150px;
       padding-right: 190px;
@@ -544,7 +546,7 @@ Flexbox 用于不同尺寸屏幕中创建可自动扩展和收缩布局
 
 原理：主体元素上设置左右边距，预留两翼位置。左右两栏使用浮动和负边距归位，消除相对定位。
 
-```
+```css
 .container {
     /*padding-left:150px;*/
     /*padding-right:190px;*/
@@ -590,7 +592,7 @@ reset.css 意为重置默认样式。HTML 中绝大部分标签元素在网页�
 
 Eric Meyer（CSS Reset）推荐
 
-```
+```css
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -718,7 +720,7 @@ CSS 可以拆分成 2 部分：公共 CSS 和 业务 CSS：
 - 基本原理是利用 CSS3 媒体查询，为不同尺寸的设备适配不同样式
 - 对于低版本的 IE，可采用 JS 获取屏幕宽度，然后通过 resize 方法来实现兼容：
 
-```
+```js
 $(window).resize(function () {
     screenRespond();
 });
@@ -762,7 +764,7 @@ link > visited > hover > active
 
 伪元素:在内容元素的前后插入额外的元素或样式，但是这些元素实际上并不在文档中生成。它们只在外部显示可见，但不会在文档的源代码中找到它们，因此，称为“伪”元素。例如：
 
-```
+```css
 p::before {content:"第一章：";}
 p::after {content:"Hot!";}
 p::first-line {background:red;}
@@ -771,7 +773,7 @@ p::first-letter {font-size:30px;}
 
 伪类: 将特殊的效果添加到特定选择器上。它是已有元素上添加类别的，不会产生新的元素。例如：
 
-```
+```css
 a:hover {color: #FF00FF}
 p:first-child {color: red}
 ```
@@ -792,7 +794,7 @@ p:first-child {color: red}
 
 input [type=search] 搜索框右侧小图标如何美化？
 
-```
+```css
 input[type="search"]::-webkit-search-cancel-button{
   -webkit-appearance: none;
   height: 15px;
@@ -805,13 +807,13 @@ input[type="search"]::-webkit-search-cancel-button{
 
 ### 网站图片文件，如何点击下载？而非点击预览？
 
-```
+```html
 <a href="logo.jpg" download>下载</a> <a href="logo.jpg" download="网站LOGO" >下载</a>
 ```
 
 ### iOS safari 如何阻止“橡皮筋效果”？
 
-```
+```js
   $(document).ready(function(){
       var stopScrolling = function(event) {
           event.preventDefault();
@@ -841,7 +843,7 @@ input[type="search"]::-webkit-search-cancel-button{
 
 ### 怎么让 Chrome 支持小于 12px 的文字？
 
-```
+```css
   .shrink{
     -webkit-transform:scale(0.8);
     -o-transform:scale(1);
@@ -851,7 +853,7 @@ input[type="search"]::-webkit-search-cancel-button{
 
 ### 让页面里的字体变清晰，变细用 CSS 怎么做？（IOS 手机浏览器字体齿轮设置）
 
-```
+```css
   -webkit-font-smoothing: antialiased;
 ```
 
@@ -881,13 +883,13 @@ font-style: oblique; 使没有 italic 属性的文字实现倾斜
 
 ### 如何优化网页的打印样式
 
-```
+```html
 <link rel="stylesheet" type="text/css" media="screen" href="xxx.css" />
 ```
 
 其中 media 指定的属性就是设备，显示器上就是 screen，打印机则是 print，电视是 tv，投影仪是 projection。
 
-```
+```html
  <link rel="stylesheet" type="text/css" media="print" href="yyy.css" />
 ```
 
