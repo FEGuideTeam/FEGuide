@@ -14,10 +14,10 @@
 
 ### 目录
 
-1. [HTML 问题](./html.md)
-2. [CSS 问题](./css.md)
-3. [javaScript 问题](./javascript.md)
-4. [网络问题](./http.md)
+1. [HTML 问题](./html问题/)
+2. [CSS 问题](./css问题/)
+3. [javaScript 问题](./javascript问题/)
+4. [网络问题](./网络问题/)
 5. 计算机底层问题
 6. nodeJs 问题
 7. [框架问题集合](./框架/)
