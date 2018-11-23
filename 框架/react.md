@@ -2,7 +2,7 @@
 
 Keys 是 React 用于追踪哪些列表中元素被修改、被添加或者被移除的辅助标识。
 
-```
+```js
 render () {
   return (
     <ul>
@@ -65,7 +65,7 @@ shouldComponentUpdate 这个方法用来判断是否需要调用 render 方法�
 
 Refs 是 React 提供给我们的安全访问 DOM 元素或者某个组件实例的句柄。我们可以为元素添加 ref 属性然后在回调函数中接受该元素在 DOM 树中的句柄，该值会作为回调函数的第一个参数返回：
 
-```
+```js
 class CustomForm extends Component {
   handleSubmit = () => {
     console.log("Input Value: ", this.input.value)
@@ -85,7 +85,7 @@ class CustomForm extends Component {
 
 上述代码中的 input 域包含了一个 ref 属性，该属性声明的回调函数会接收 input 对应的 DOM 元素，我们将其绑定到 this 指针以便在其他的类函数中使用。另外值得一提的是，refs 并不是类组件的专属，函数式组件同样能够利用闭包暂存其值：
 
-```
+```js
 function CustomForm ({handleSubmit}) {
   let inputElement
   return (
@@ -101,7 +101,7 @@ function CustomForm ({handleSubmit}) {
 
 ### 如果你创建了类似于下面的 Twitter 元素，那么它相关的类定义是啥样子的？
 
-```
+```js
 <Twitter username='tylermcginnis33'>
   {(user) => user === null
     ? <Loading />
@@ -109,7 +109,7 @@ function CustomForm ({handleSubmit}) {
 </Twitter>
 ```
 
-```
+```js
 import React, { Component, PropTypes } from 'react'
 import fetchUser from 'twitter'
 // fetchUser take in a username returns a promise
@@ -121,7 +121,7 @@ class Twitter extends Component {
 
 如果你还不熟悉回调渲染模式（Render Callback Pattern），这个代码可能看起来有点怪。这种模式中，组件会接收某个函数作为其子组件，然后在渲染函数中以 props.children 进行调用：
 
-```
+```js
 import React, { Component, PropTypes } from 'react'
 import fetchUser from 'twitter'
 class Twitter extends Component {
@@ -143,7 +143,7 @@ class Twitter extends Component {
 
 这种模式的优势在于将父组件与子组件解耦和，父组件可以直接访问子组件的内部状态而不需要再通过 Props 传递，这样父组件能够更为方便地控制子组件展示的 UI 界面。譬如产品经理让我们将原本展示的 Badge 替换为 Profile，我们可以轻易地修改下回调函数即可：
 
-```
+```js
 <Twitter username='tylermcginnis33'>
   {(user) => user === null
     ? <Loading />
@@ -200,7 +200,7 @@ class Twitter extends Component {
 
 React.createElement():JSX 语法就是用 React.createElement()来构建 React 元素的。它接受三个参数，第一个参数可以是一个标签名。如 div、span，或者 React 组件。第二个参数为传入的属性。第三个以及之后的参数，皆作为组件的子组件。
 
-```
+```js
 React.createElement(
     type,
     [props],
@@ -210,7 +210,7 @@ React.createElement(
 
 React.cloneElement()与 React.createElement()相似，不同的是它传入的第一个参数是一个 React 元素，而不是标签名或组件。新添加的属性会并入原有的属性，传入到返回的新元素中，而就的子元素奖杯替换。
 
-```
+```js
 React.cloneElement(
   element,
   [props],
