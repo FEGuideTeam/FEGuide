@@ -136,7 +136,7 @@ html[xmlns*=""]:root #trece  { color: red  }
 - 否则，如果元素是根元素，display 根据下表进行调整
 - 其他情况下 display 的值为指定值 总结起来：绝对定位、浮动、根元素都需要调整 display
 
-  ![display关系](./imgs/display关系.png)
+  ![display关系](../imgs/display关系.png)
 
 ### 外边距折叠(collapsing margins)
 

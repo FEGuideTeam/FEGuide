@@ -1068,7 +1068,7 @@ if(new Boolean(false)){
 
 ### 浏览器中的 Event Loop
 
-![浏览器中的Eventloop](./imgs/eventLoop.jpg)
+![浏览器中的Eventloop](../imgs/eventLoop.jpg)
 
 -   主线程运行的时候会生成堆（heap）和栈（stack）；
 -   js 从上到下解析方法，将其中的同步任务按照执行顺序排列到执行栈中；
