@@ -30,7 +30,7 @@ mvc 和 mvvm 其实区别并不大。都是一种设计思想。主要就是 mvc
 
 1. 父组件与子组件传值
 
-```
+```html
 //父组件通过标签上面定义传值
 <template>
     <Main :obj="data"></Main>
@@ -69,7 +69,7 @@ mvc 和 mvvm 其实区别并不大。都是一种设计思想。主要就是 mvc
 
 2. 子组件向父组件传递数据
 
-```
+```html
 //子组件通过$emit方法传递参数
 <template>
    <div v-on:click="events"></div>
@@ -111,7 +111,7 @@ vue-router 模块的 router-link 组件。
 在实际项目中我们会碰到多层嵌套的组件组合而成，但是我们如何实现嵌套路由呢？因此我们需要在 VueRouter 的参数中使用 children 配置，这样就可以很好的实现路由嵌套。
 index.html，只有一个路由出口
 
-```
+```html
 <div id="app">
     <!-- router-view 路由出口, 路由匹配到的组件将渲染在这里 -->
     <router-view></router-view>
@@ -120,7 +120,7 @@ index.html，只有一个路由出口
 
 main.js，路由的重定向，就会在页面一加载的时候，就会将 home 组件显示出来，因为重定向指向了 home 组件，redirect 的指向与 path 的必须一致。children 里面是子路由，当然子路由里面还可以继续嵌套子路由。
 
-```
+```js
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
@@ -165,13 +165,13 @@ webpack 中提供了 require.ensure()来实现按需加载。以前引入路由�
 
 - 不进行页面按需加载引入方式：
 
-```
+```js
 import  home   from '../../common/home.vue'
 ```
 
 - 进行页面按需加载的引入方式：
 
-```
+```js
 const  home = r => require.ensure( [], () => r (require('../../common/home.vue')))
 ```
 
@@ -179,7 +179,7 @@ const  home = r => require.ensure( [], () => r (require('../../common/home.vue')
 
 vue 框架中状态管理。在 main.js 引入 store，注入。新建了一个目录 store，….. export 。场景有：单页应用中，组件之间的状态。音乐播放、登录状态、加入购物车
 
-```
+```js
 // 新建 store.js
 import vue from 'vue'
 import vuex form 'vuex'

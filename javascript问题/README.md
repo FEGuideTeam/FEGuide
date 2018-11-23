@@ -149,7 +149,7 @@ JavaScript 变量声明提升：
 1. 构造函数法（this + prototype） -- 用 new 关键字 生成实例对象
     - 缺点：用到了 this 和 prototype，编写复杂，可读性差
 
-```
+```js
   function Mobile(name, price){
      this.name = name;
      this.price = price;
@@ -164,7 +164,7 @@ JavaScript 变量声明提升：
 2. Object.create 法 -- 用 Object.create() 生成实例对象
     - 缺点：不能实现私有属性和私有方法，实例对象之间也不能共享数据
 
-```
+```js
  var Person = {
      firstname: "Mark",
      lastname: "Yun",
@@ -190,7 +190,7 @@ JavaScript 变量声明提升：
 3. 极简主义法（消除 this 和 prototype） -- 调用 createNew() 得到实例对象
     - 优点：容易理解，结构清晰优雅，符合传统的"面向对象编程"的构造
 
-```
+```js
  var Cat = {
    age: 3, // 共享数据 -- 定义在类对象内，createNew() 外
    createNew: function () {
@@ -214,7 +214,7 @@ JavaScript 变量声明提升：
 
 4. ES6 语法糖 class -- 用 new 关键字 生成实例对象
 
-```
+```js
      class Point {
        constructor(x, y) {
          this.x = x;
@@ -232,7 +232,7 @@ JavaScript 变量声明提升：
 
 1. 构造函数绑定：使用 call 或 apply 方法，将父对象的构造函数绑定在子对象上
 
-```
+```js
 function Cat(name,color){
  　Animal.apply(this, arguments);
  　this.name = name;
@@ -242,14 +242,14 @@ function Cat(name,color){
 
 2. 实例继承：将子对象的 prototype 指向父对象的一个实例
 
-```
+```js
 Cat.prototype = new Animal();
 Cat.prototype.constructor = Cat;
 ```
 
 3. 拷贝继承：如果把父对象的所有属性和方法，拷贝进子对象
 
-```
+```js
 function extend(Child, Parent) {
 　　　var p = Parent.prototype;
 　　　var c = Child.prototype;
@@ -262,7 +262,7 @@ function extend(Child, Parent) {
 
 4. 原型继承：将子对象的 prototype 指向父对象的 prototype
 
-```
+```js
 function extend(Child, Parent) {
     var F = function(){};
     　F.prototype = Parent.prototype;
@@ -274,7 +274,7 @@ function extend(Child, Parent) {
 
 5. ES6 语法糖 extends：class ColorPoint extends Point {}
 
-```
+```js
 class ColorPoint extends Point {
     constructor(x, y, color) {
         super(x, y); // 调用父类的constructor(x, y)
@@ -306,13 +306,13 @@ javascript 创建对象简单的说,无非就是使用内置对象或各种自�
 
 1. 对象字面量的方式
 
-```
+```js
 person={firstname:"Mark",lastname:"Yun",age:25,eyecolor:"black"};
 ```
 
 2. 用 function 来模拟无参的构造函数
 
-```
+```js
  function Person(){}
     var person=new Person();//定义一个function，如果使用new"实例化",该function可以看作是一个Class
         person.name="Mark";
@@ -325,7 +325,7 @@ person.work();
 
 3. 用 function 来模拟参构造函数来实现（用 this 关键字定义构造的上下文属性）
 
-```
+```js
 function Pet(name,age,hobby){
     this.name=name;//this作用域：当前对象
     this.age=age;
@@ -340,7 +340,7 @@ maidou.eat();//调用eat方法
 
 4. 用工厂方式来创建（内置对象）
 
-```
+```js
 var wcDog =new Object();
      wcDog.name="旺财";
      wcDog.age=3;
@@ -352,7 +352,7 @@ wcDog.work();
 
 5. 用原型方式来创建
 
-```
+```js
 function Dog(){
 
     }
@@ -366,7 +366,7 @@ wangcai.eat();
 
 6. 用混合方式来创建
 
-```
+```js
 function Car(name,price){
     this.name=name;
     this.price=price;
@@ -472,7 +472,7 @@ DOM3 级事件处理方式：
 
 示例：
 
-```
+```js
 ulEl.addEventListener('click', function(e){
     var target = event.target || event.srcElement;
     if(!!target && target.nodeName.toUpperCase() === "LI"){
@@ -491,7 +491,7 @@ IE 只事件冒泡，不支持事件捕获；火狐同时支持件冒泡和事�
 -   return false javascript 的 return false 只会阻止默认行为，而是用 jQuery 的话则既阻止默认行为又防止对象冒泡。
 -   阻止冒泡 w3c 的方法是 e.stopPropagation()，IE 则是使用 e.cancelBubble = true
 
-```
+```js
 [js] view plaincopy
 function stopHandler(event)
 
@@ -546,7 +546,7 @@ function stopHandler(event)
 -   W3C: 使用 dispatchEvent 方法
 -   IE: 使用 fireEvent 方法
 
-```
+```js
 var fireEvent = function(element, event){
     if (document.createEventObject){
         var mockEvent = document.createEventObject();
@@ -567,7 +567,7 @@ var fireEvent = function(element, event){
 
 函数节流简单实现：
 
-```
+```js
 function throttle(method, context) {
      clearTimeout(methor.tId);
      method.tId = setTimeout(function(){
@@ -602,7 +602,7 @@ map 每次为 parseInt 传 3 个参数(elem, index, array)，其中 index 为数
 
 因此，map 遍历 ["1", "2", "3"]，相应 parseInt 接收参数如下
 
-```
+```js
 parseInt('1', 0);  // 1
 parseInt('2', 1);  // NaN
 parseInt('3', 2);  // NaN
@@ -622,7 +622,7 @@ parseInt('3', 2);  // NaN
 
 ### 解释一下这段代码的意思吗？
 
-```
+```js
   [].forEach.call($$("*"), function(el){
       el.style.outline = "1px solid #" + (~~(Math.random()*(1<<24))).toString(16);
   })
@@ -670,7 +670,7 @@ use strict 是一种 ECMAscript 5 添加的（严格）运行模式,这种模式
 
 ### 如何判断一个对象是否属于某个类？
 
-```
+```js
 // 使用instanceof （待完善）
    if(a instanceof Person){
        alert('yes');
@@ -762,7 +762,7 @@ ajax 的全称：Asynchronous Javascript And XML
 -   主要好处就是可以消除对象间的耦合，通过使用工程方法而不是 new 关键字。将所有实例化的代码集中在一个位置防止代码重复
 -   工厂模式解决了重复实例化的问题 ，但还有一个问题,那就是识别问题，因为根本无法 搞清楚他们到底是哪个对象的实例
 
-```
+```js
 function createObject(name,age,profession){
     //集中实例化的函数
     var obj = new Object();
@@ -807,7 +807,7 @@ var test1 = createObject('trigkit4',22,'programmer');//第一个实例var test2 
 
 ### 实现一个函数 clone，可以对 JavaScript 中的 5 种主要的数据类型（包括 Number、String、Object、Array、Boolean）进行值复制（常考）
 
-```
+```js
 function deepClone(obj) {
     if (!isObject(obj)) {
         throw new Error('obj 不是一个对象！')
@@ -825,7 +825,7 @@ function deepClone(obj) {
 
 注意：for...in 法不支持拷贝 func、date、reg 和 err
 
-```
+```js
 // 代理法
 function deepClone(obj) {
     if (!isObject(obj)) {
@@ -865,7 +865,7 @@ function deepClone(obj) {
 
 将时间设为当前时间往前一点
 
-```
+```js
 var date = new Date();
 date.setDate(date.getDate() - 1);//真正的删除
 ```
@@ -874,7 +874,7 @@ setDate()方法用于设置一个月的某一天
 
 expires 的设置
 
-```
+```js
   document.cookie = 'user='+ encodeURIComponent('name')  + ';expires = ' + new Date(0)
 ```
 
@@ -882,7 +882,7 @@ expires 的设置
 
 假设：一个英文字符占用一个字节，一个中文字符占用两个字节
 
-```
+```js
 function GetBytes(str){
 
         var len = str.length;
@@ -948,7 +948,7 @@ alert(GetBytes("你好,as"));
 
 ### 简单实现 Function.bind 函数？
 
-```
+```js
   if (!Function.prototype.bind) {
     Function.prototype.bind = function(that) {
       var func = this, args = arguments;
@@ -1019,7 +1019,7 @@ alert(GetBytes("你好,as"));
 
 ### 在 javascript 中，1 与 Number(1)有什么区别 [易混淆]
 
-```
+```js
 var a = Number(1) // 1
 var b = new Number(1)  // Number {[[PrimitiveValue]]: 1}
 typeof (a) // number
@@ -1031,7 +1031,7 @@ a == b // true
 -   new Number(1)返回的是一个对象
 -   a==b 为 true 是因为所以在求值过程中，总是会强制转为原始数据类型而非对象，例如下面的代码:
 
-```
+```js
 typeof 123 // "number"
 typeof new Number(123) // "object"
 123 instanceof Number // false
@@ -1047,7 +1047,7 @@ true
 
 布尔的包装对象 Boolean 的对象实例，对象只有在 null 与 undefined 时，才会认定为布尔的 false 值，布尔包装对象本身是个对象，对象->布尔 都是 true，所以 new Boolean(false)其实是布尔的 true，看下面这段代码:
 
-```
+```js
 if(new Boolean(false)){
     alert('true!!');
 }
@@ -1055,7 +1055,7 @@ if(new Boolean(false)){
 
 只有使用了 valueOf 后才是真正的转换布尔值，与上面包装对象与原始资料转换说明的相同:
 
-```
+```js
 !!(new Boolean(false))  //true
 (new Boolean(false)).valueOf() //false
 ```

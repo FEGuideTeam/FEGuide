@@ -1919,7 +1919,7 @@
 
      The following lifecycle methods will be called when state changes. You can compare provided state and props values with current state and props to determine if something meaningful changed.
 
-     ```
+     ```jsx harmony
      componentWillUpdate(object nextProps, object nextState)
      componentDidUpdate(object prevProps, object prevState)
      ```
@@ -3588,7 +3588,7 @@
 
      For example an example action which represents adding a new todo item:
 
-     ```
+     ```javascript
      {
        type: ADD_TODO,
        text: 'Add todo item'

@@ -18,7 +18,7 @@
   - 常见: br hr img input link meta
   - 不常见: area base col command embed keygen param source track wbr
 
-不同浏览器（版本）、HTML4（5）、CSS2 等实际略有差异  
+不同浏览器（版本）、HTML4（5）、CSS2 等实际略有差异
 参考: http://stackoverflow.com/questions/6867254/browsers-default-css-for-html-elements
 
 ### 页面导入样式时，使用 link 和@import 有什么区别？
@@ -67,7 +67,7 @@ JS 引擎则：解析和执行 javascript 来实现网页的动态效果。
   - 浏览器支持新标签后，还需要添加标签默认的样式。
   - 当然也可以直接使用成熟的框架、比如 html5shim;
 
-    ```
+    ```html
     <!--[if lt IE 9]>
         <script> src="http://html5shim.googlecode.com/svn/trunk/html5.js"</script>
     <![endif]-->
@@ -145,7 +145,7 @@ FALLBACK:
 
 label 标签来定义表单控制间的关系,当用户选择该标签时，浏览器会自动将焦点转到和标签相关的表单控件上。
 
-```
+```html
   <label for="Name">Number:</label>
   <input type=“text“name="Name" id="Name"/>
   <label>Date:<input type="text" name="B"/></label>
@@ -186,7 +186,7 @@ localstorge 另一个浏览上下文里被添加、修改或删除时，它都�
 
 ### 实现不使用 border 画出 1px 高的线，在不同浏览器的标准模式与怪异模式下都能保持一致的效果。
 
-```
+```html
  <div style="height:1px;overflow:hidden;background:red"></div>
 ```
 
@@ -213,13 +213,13 @@ strong, em, ins, del, code
 
 ### html 中 title 属性和 alt 属性的区别？
 
-```
+```html
 <img src="#" alt="alt信息" />
 ```
 
 当图片不输出信息的时候，会显示 alt 信息 鼠标放上去没有信息，当图片正常读取，不会出现 alt 信息。
 
-```
+```html
 <img src="#" alt="alt信息" title="title信息" />
 ```
 
