@@ -900,6 +900,13 @@ font-style: oblique; 使没有 italic 属性的文字实现倾斜
 - 最好不要使用像素作为单位，因为打印样式表要打印出来的会是实物，所以建议使用 pt 和 cm。
 - 隐藏掉不必要的内容。（@print div{display:none;}）
 - 打印样式表中最好少用浮动属性，因为它们会消失。
+- 去掉页眉页脚及打印链接
+```css
+        @page {
+            margin-bottom: 0mm;
+            margin-top: 0mm;
+        }
+```
 
 ### 请问为何要使用 transform 而非 absolute positioning，或反之的理由？为什么？
 
